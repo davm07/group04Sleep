@@ -28,3 +28,19 @@ export function getParams(param) {
   const urlParams = new URLSearchParams(queryString);
   return urlParams.get(param);
 }
+
+//render the content 
+export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
+  const htmlStrings = list.map(templateFn);
+  if(clear) {
+    parentElement.innerHTML = "";
+  }
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+}
+
+//get the items quantity from the cart
+export function getCartItemsQty(selector) {
+  const quantity = getLocalStorage("so-cart")?.length || 0;
+  const element = document.querySelector(selector);
+  element.innerHTML = quantity;
+}
