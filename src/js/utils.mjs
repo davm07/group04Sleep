@@ -43,4 +43,25 @@ export function getCartItemsQty(selector) {
   const quantity = getLocalStorage("so-cart")?.length || 0;
   const element = document.querySelector(selector);
   element.innerHTML = quantity;
+  return quantity;
+}
+
+//Validate total price in Cart
+export function validateCartTotalPrice(cartElementQuantity) {
+  const element = document.querySelector(".cart-footer")
+  if (cartElementQuantity > 0){
+    element.style.visibility = 'visible'
+    const cartLocalStorage = JSON.parse(localStorage.getItem("so-cart"))
+    let total = 0
+    cartLocalStorage.map(element => {
+      total = total + element.FinalPrice
+    })
+    element.innerHTML = `
+    <div class="cart-footer hide">
+      <p class="cart-total">Total: ($${total})</p>
+    </div>`
+  } else {
+    element.style.visibility = 'hidden'
+  }
+  
 }

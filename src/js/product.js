@@ -10,3 +10,4 @@ const product = new ProductDetails(productId, dataSource);
 
 getCartItemsQty(".cart-qty");
 product.init();
+

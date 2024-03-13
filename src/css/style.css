@@ -236,9 +236,16 @@ button {
     font-size: inherit;
     grid-template-columns: 150px auto 15%;
   }
+  .hide {
+    visibility: 'hidden';
+  }
 }
 
 footer {
   font-size: var(--small-font);
   padding: 1em;
+}
+
+.cart-footer .hide {
+  color: red;
 }
