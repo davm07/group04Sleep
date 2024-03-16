@@ -237,7 +237,7 @@ button {
     grid-template-columns: 150px auto 15%;
   }
   .hide {
-    visibility: 'hidden';
+    visibility: "hidden";
   }
 }
 

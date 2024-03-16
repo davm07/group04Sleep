@@ -22,6 +22,15 @@ export function setClick(selector, callback) {
   qs(selector).addEventListener("click", callback);
 }
 
+// convert to text
+function convertToText(res) {
+  if (res.ok) {
+    return res.text();
+  } else {
+    throw new Error("Bad Response");
+  }
+}
+
 // get the parameters from the query
 export function getParams(param) {
   const queryString = window.location.search;
@@ -38,6 +47,32 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
 
+//render the content 
+export function renderWithTemplate(template, parent, data, callback) {
+  const content = template.content.cloneNode(true);
+  parent.appendChild(content);
+  if(callback) {
+    callback(data);
+  }
+}
+
+export async function loadHeaderFooter() {
+  const header = await loadTemplate("../partials/header.html");
+  const footer = await loadTemplate("../partials/footer.html");
+  const headerElement = document.querySelector("#header");
+  const footerElement = document.querySelector("#footer");
+
+  renderWithTemplate(header, headerElement, ".cart-qty", getCartItemsQty);
+  renderWithTemplate(footer, footerElement);
+}
+
+async function loadTemplate(path) {
+  const html = await fetch(path).then(convertToText);
+  const template = document.createElement("template");
+  template.innerHTML = html;
+  return template;
+}
+
 //get the items quantity from the cart
 export function getCartItemsQty(selector) {
   const quantity = getLocalStorage("so-cart")?.length || 0;
@@ -50,7 +85,7 @@ export function getCartItemsQty(selector) {
 export function validateCartTotalPrice(cartElementQuantity) {
   const element = document.querySelector(".cart-footer")
   if (cartElementQuantity > 0){
-    element.style.visibility = 'visible'
+    element.style.visibility = "visible"
     const cartLocalStorage = JSON.parse(localStorage.getItem("so-cart"))
     let total = 0
     cartLocalStorage.map(element => {
@@ -61,7 +96,6 @@ export function validateCartTotalPrice(cartElementQuantity) {
       <p class="cart-total">Total: ($${total})</p>
     </div>`
   } else {
-    element.style.visibility = 'hidden'
+    element.style.visibility = "hidden"
   }
-  
 }
