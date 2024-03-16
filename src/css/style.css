@@ -119,6 +119,33 @@ button {
   max-width: 600px;
   margin: auto;
 }
+/* Product grid styles */
+.product-grid {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding-left: 0;
+  gap: 2em;
+  text-align: center;
+}
+
+.product-grid li {
+  width: 150px;
+}
+
+.product-grid li a {
+  text-decoration: none;
+  color: var(--dark-grey);
+}
+
+.product-grid li a h2 {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+/* Product list styles */
 .products {
   padding: 0.5em;
 }
@@ -132,6 +159,9 @@ button {
 .product-list a {
   text-decoration: none;
   color: var(--dark-grey);
+}
+.product-list a img {
+  width: 100%;
 }
 /* Styles for product lists */
 .product-card {
