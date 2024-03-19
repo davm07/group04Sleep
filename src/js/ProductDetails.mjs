@@ -19,11 +19,27 @@ export default class ProductDetails {
     }
 
     addToCart() {
-        let items = getLocalStorage("so-cart") || [];
-        let products = [...items, this.product];
-        setLocalStorage("so-cart", products);
-        document.querySelector(".cart-qty").innerHTML = products.length;
-    }
+      let items = getLocalStorage("so-cart") || [];
+      let products = [];
+      let existingProduct = items.find(item => item.Id === this.productId);
+  
+      if (existingProduct) {
+          // If the product already exists in the cart, increment its quantity
+          products = items.map(item => {
+              if (item.Id === this.productId) {
+                  item.Quantity = (item.Quantity || 1) + 1;
+              }
+              return item;
+          });
+      } else {
+          // If the product doesn't exist in the cart, add it with quantity 1
+          this.product.Quantity = 1;
+          products = [...items, this.product];
+      }
+  
+      setLocalStorage("so-cart", products);
+      getCartItemsQty(".cart-qty");
+  }
 
     renderProductDetails() {
         return `<section class="product-detail">
@@ -33,7 +49,7 @@ export default class ProductDetails {
 
         <img
           class="divider"
-          src="${this.product.Image}"
+          src="${this.product.Images.PrimaryLarge}"
           alt="${this.product.Name}"
         />
 

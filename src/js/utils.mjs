@@ -75,7 +75,12 @@ async function loadTemplate(path) {
 
 //get the items quantity from the cart
 export function getCartItemsQty(selector) {
-  const quantity = getLocalStorage("so-cart")?.length || 0;
+  // const quantity = getLocalStorage("so-cart")?.length || 0;
+  // const element = document.querySelector(selector);
+  // element.innerHTML = quantity;
+  // return quantity;
+  const items = getLocalStorage("so-cart") || [];
+  const quantity = items.reduce((total, item) => total + item.Quantity, 0);
   const element = document.querySelector(selector);
   element.innerHTML = quantity;
   return quantity;
@@ -89,11 +94,11 @@ export function validateCartTotalPrice(cartElementQuantity) {
     const cartLocalStorage = JSON.parse(localStorage.getItem("so-cart"))
     let total = 0
     cartLocalStorage.map(element => {
-      total = total + element.FinalPrice
+      total = total + (element.FinalPrice * element.Quantity)
     })
     element.innerHTML = `
     <div class="cart-footer hide">
-      <p class="cart-total">Total: ($${total})</p>
+      <p class="cart-total">Cart Total: ($${total.toFixed(2)})</p>
     </div>`
   } else {
     element.style.visibility = "hidden"
