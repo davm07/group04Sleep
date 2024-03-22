@@ -89,6 +89,7 @@ export function getCartItemsQty(selector) {
 //Validate total price in Cart
 export function validateCartTotalPrice(cartElementQuantity) {
   const element = document.querySelector(".cart-footer")
+  const checkout = document.querySelector("#checkout-pro")
   if (cartElementQuantity > 0){
     element.style.visibility = "visible"
     const cartLocalStorage = JSON.parse(localStorage.getItem("so-cart"))
@@ -102,5 +103,6 @@ export function validateCartTotalPrice(cartElementQuantity) {
     </div>`
   } else {
     element.style.visibility = "hidden"
+    checkout.style.visibility = "hidden"
   }
 }

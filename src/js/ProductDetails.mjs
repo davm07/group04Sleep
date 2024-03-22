@@ -53,7 +53,7 @@ export default class ProductDetails {
           alt="${this.product.Name}"
         />
 
-        <p class="product-card__price">${this.product.FinalPrice}</p>
+        <p class="product-card__price">$${this.product.FinalPrice}</p>
 
         <p class="product__color">${this.product.Colors[0].ColorName}</p>
 
