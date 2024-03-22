@@ -18,6 +18,62 @@
     <main class="divider">
       <section class="products">
         <h2>Review & Place your Order</h2>
+        <section class="checkout-section">
+          <form name="checkout">
+            <fieldset>
+              <legend>Shipping Details</legend>
+              <label for="fname">First name</label>
+              <input type="text" id="fname" name="fname" required />
+
+              <label for="lname">Last name</label>
+              <input type="text" id="lname" name="lname" required />
+
+              <label for="street">Street</label>
+              <input name="street" type="text" id="street" required />
+
+              <label for="city">City</label>
+              <input name="city" type="text" id="city" required />
+
+              <label for="state">State</label>
+              <input name="state" type="text" id="state" required />
+
+              <label for="zip">Zip</label>
+              <input name="zip" type="text" id="zip" required />
+            </fieldset>
+            <fieldset>
+              <legend>Payment Details</legend>
+              <label for="cardNumber">Card number</label>
+              <input name="cardNumber" type="text" id="cardNumber" required />
+
+              <label for="expiration">Expiration date</label>
+              <input name="expiration" type="text" id="expiration" required />
+
+              <label for="code">Security code</label>
+              <input name="code" type="text" id="code" required />
+            </fieldset>
+            <fieldset class="checkout-summary">
+              <legend>Order Summary</legend>
+              <ul>
+                <li>
+                  <p>
+                    Items Summary: <b><span id="num-items"></span></b>
+                  </p>
+                  Subtotal: <b>$<span id="subtotal"></span></b>
+                </li>
+                <li>
+                  Shipping Estimate: <b><span id="shippEstimate"></span></b>
+                </li>
+                <li>
+                  Tax: <b><span id="tax"></span></b>
+                </li>
+                <li>
+                  Order Total: <b><span id="orderTotal"></span></b>
+                </li>
+              </ul>
+            </fieldset>
+            <button type="submit" id="checkout-btn">Submit Order</button>
+          </form>
+        </section>
       </section>
     </main>
 

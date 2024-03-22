@@ -85,11 +85,11 @@ button {
   padding: 0.5em 2em;
   background-color: var(--secondary-color);
   color: white;
-  margin: auto;
   display: block;
   border: 0;
   font-size: var(--large-font);
   cursor: pointer;
+  width: 100%;
 }
 .divider {
   border-bottom: 2px solid var(--primary-color);
@@ -254,6 +254,65 @@ button {
   top: -12px;
   right: -3px;
   padding: 0.1em;
+}
+/* styles for the checkout form */
+form[name="checkout"] {
+  max-width: 25rem;
+  margin: 1rem 0;
+}
+
+fieldset {
+  padding-bottom: 1.2em;
+  margin-bottom: 2em;
+  border: 2px solid var(--dark-grey);
+}
+
+fieldset legend {
+  font-weight: bold;
+}
+
+form[name="checkout"] label {
+  display: block;
+  padding-top: 1em;
+  font-size: 0.9em;
+  width: 100%;
+}
+
+form[name="checkout"] input {
+  box-sizing: border-box;
+  display: block;
+  font-size: 0.9em;
+  padding: 0.7em;
+  width: 100%;
+  margin-top: 0.15em;
+  max-width: 25em;
+  border: 1px solid var(--dark-grey);
+}
+
+.checkout-summary ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.checkout-summary ul li {
+  margin: 0.5em 0;
+}
+
+.checkout-summary ul li p {
+  margin: 0.5em 0;
+}
+
+/* Button checkout in cart styles */
+#checkout-pro {
+  padding: 0.5em 2em;
+  background-color: var(--secondary-color);
+  color: white;
+  display: block;
+  border: 0;
+  font-size: var(--large-font);
+  cursor: pointer;
+  max-width: fit-content;
+  text-decoration: none;
 }
 
 @media screen and (min-width: 500px) {
