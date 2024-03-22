@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage, getCartItemsQty } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, getCartItemsQty, alertMessage } from "./utils.mjs";
 
 export default class ProductDetails {
     constructor(productId, dataSource){
@@ -38,6 +38,7 @@ export default class ProductDetails {
       }
   
       setLocalStorage("so-cart", products);
+      alertMessage(`${this.product.NameWithoutBrand} added to cart!`);
       getCartItemsQty(".cart-qty");
   }
 

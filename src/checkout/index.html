@@ -43,13 +43,29 @@
             <fieldset>
               <legend>Payment Details</legend>
               <label for="cardNumber">Card number</label>
-              <input name="cardNumber" type="text" id="cardNumber" required />
+              <input
+                name="cardNumber"
+                type="text"
+                id="cardNumber"
+                minlength="16"
+                maxlength="16"
+                pattern="^[0-9]*$"
+                placeholder="Ex: 1234123412341234"
+                required
+              />
 
               <label for="expiration">Expiration date</label>
               <input name="expiration" type="text" id="expiration" required />
 
               <label for="code">Security code</label>
-              <input name="code" type="text" id="code" required />
+              <input
+                name="code"
+                type="text"
+                id="code"
+                required
+                pattern="^\d{3}"
+                placeholder="Ex: 123"
+              />
             </fieldset>
             <fieldset class="checkout-summary">
               <legend>Order Summary</legend>

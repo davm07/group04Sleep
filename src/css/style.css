@@ -315,6 +315,28 @@ form[name="checkout"] input {
   text-decoration: none;
 }
 
+/* Alert styles */
+.alert {
+  background-color: var(--primary-color);
+  margin: 0.5em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em;
+  border: 2px solid #f38d33;
+  box-sizing: border-box;
+  font-size: 0.9em;
+}
+
+.alert p {
+  margin: 0;
+}
+
+.alert span {
+  cursor: pointer;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
