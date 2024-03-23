@@ -1,5 +1,42 @@
 import { getLocalStorage, setLocalStorage, getCartItemsQty, alertMessage } from "./utils.mjs";
 
+let slideIndex = 1;
+
+function moveSlide(n) {
+    displaySlides(slideIndex += n);
+}
+
+function displaySlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("carouselSlide");
+    if (n > slides.length) {slideIndex = 1}    
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+    }
+    slides[slideIndex-1].style.display = "block";  
+}
+
+function renderImageCarousel(list) {
+    let html = "";
+    if(list != null && list.length > 0) {
+        list.forEach(element => {
+            html += `<div class="carouselSlide fade">
+                <img
+                class="divider"
+                src="${element.Src}"
+                alt="${element.Title}"
+                />
+            </div>`;
+        });
+        html += `<a id="prevBtn">❮</a>
+        <a id="nextBtn">❯</a>`
+        return html;
+    } else {
+        return "";
+    }
+}
+
 export default class ProductDetails {
     constructor(productId, dataSource){
         this.productId = productId;
@@ -16,6 +53,10 @@ export default class ProductDetails {
         // Notice the .bind(this). Our callback will not work if we don't include that line. Review the readings from this week on 'this' to understand why.
         document.getElementById("addToCart")
         .addEventListener("click", this.addToCart.bind(this));
+
+        displaySlides(slideIndex);
+        document.querySelector("#prevBtn").addEventListener("click", () => moveSlide(-1));
+        document.querySelector("#nextBtn").addEventListener("click", () => moveSlide(1));
     }
 
     addToCart() {
@@ -48,11 +89,16 @@ export default class ProductDetails {
 
         <h2 class="divider">${this.product.NameWithoutBrand}</h2>
 
-        <img
-          class="divider"
-          src="${this.product.Images.PrimaryLarge}"
-          alt="${this.product.Name}"
-        />
+        <div class="carousel-cont">
+            <div class="carouselSlide fade">
+                <img
+                class="divider"
+                src="${this.product.Images.PrimaryLarge}"
+                alt="${this.product.Name}"
+                />
+            </div>
+            ${renderImageCarousel(this.product.Images.ExtraImages)}
+        </div>
 
         <p class="product-card__price">$${this.product.FinalPrice}</p>
 

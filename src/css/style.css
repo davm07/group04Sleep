@@ -337,6 +337,48 @@ form[name="checkout"] input {
   cursor: pointer;
 }
 
+/* Slides styles */ 
+/* W3 Schools helped me to build the carousel, I just change some names and personalize it */
+.carousel-cont {
+  position: relative;
+  margin: auto;
+}
+
+#prevBtn, #nextBtn {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: .5em;
+  margin-top: -22px;
+  color: var(--dark-grey);
+  font-weight: bold;
+  font-size: 1em;
+  transition: 0.8s ease;
+  border-radius: 3px;
+  user-select: none;
+  background-color: var(--light-grey);
+}
+
+#nextBtn {
+  right: 0;
+  border-radius: 3px;
+}
+
+#prevBtn:hover, #nextBtn:hover {
+  background-color: rgba(208, 208, 208, 0.5);
+}
+
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
